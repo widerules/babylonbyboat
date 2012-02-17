@@ -29,7 +29,8 @@ public class Mine extends Basic2dObject {
 	 * @author Peter Hankel
 	 * @param float position_x / _y - the Mine will be spawned at this position
 	 */
-	public Mine(float position_x, float position_y) {
+	public Mine(String ressourcename, float position_x, float position_y) {
+		super(ressourcename);
 		_position_x = position_x;
 		_position_y = position_y;
 		
@@ -42,7 +43,8 @@ public class Mine extends Basic2dObject {
 	 * @author Peter Hankel
 	 * @param Activity context - reference to an activity-context. Needed for getting the screenwidth
 	 */ 
-	public Mine(Activity context) {
+	public Mine(String ressourcename, Activity context) {
+		super(ressourcename);
 		Random rand = new Random();
 		
 		DisplayMetrics metrics = new DisplayMetrics();
