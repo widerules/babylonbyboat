@@ -22,11 +22,14 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
     private static final int STATE_SPIEL = 1;
     private static final int STATE_GAMEOVER = -1;
 
-    private int lives;
+    // Spielinstanzen
+    private Ship ship;   
+    private Lives lives;
     private int gameState;
 
     public GameCanvas(Context context) {
         super(context);
+        ship = new Ship("boat.png");
     }
 
     public GameCanvas(Context context, AttributeSet attrs) {
@@ -45,25 +48,10 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
         Paint p = new Paint();
         p.setColor(Color.CYAN);
         c.drawText("Hello Game", 100, 10, p);
+        lives.paint(c,p);
+        ship.paint(c);
     }
 
-    /**
-     * getLives - Liefert die Anzahl der Lebenspunkte.
-     * 
-     * @return - Anzahl Leben
-     */
-    public int getLives() {
-        return this.lives;
-    }
-
-    /**
-     * setLives - Setzt die Anzahl Leben
-     * 
-     * @param lives - Anzahl Leben
-     */
-    private void setLives(int lives) {
-        this.lives = lives;
-    }
 
     private void run() {
         // TODO-: (am-16.02.2012): noch mit Inhalt füllen
@@ -76,12 +64,5 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
         // TODO-: (am-16.02.2012): noch mit Inhalt füllen
     }
 
-    /**
-     * decLives - Zieht den aktuellen Lebenspunkten einen Lebenspunkt ab.
-     */
-    private void decLives() {
-        // TODO-: (am-16.02.2012): noch mit Inhalt füllen
-        setLives(getLives() - 1);
-    }
 
 }

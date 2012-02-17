@@ -3,11 +3,12 @@ package de.mmbbs;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class Ship {
+public class Ship extends Basic2dObject{
 	
 	private static final Bitmap bitmap = BitmapFactory.decodeFile("");
 	
-	public Ship(Bitmap bitmap){
+	public Ship(String ressourcename){
+		super(ressourcename);
 		
 	}
 	
