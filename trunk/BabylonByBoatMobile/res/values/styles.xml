@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- ============================================================ -->
+	<!-- TitleBar -->
+    <style name="window_title_text" parent="android:TextAppearance.WindowTitle">
+          <item name="android:textSize">20sp</item>
+          <item name="android:textColor">#5599FF</item>
+          <item name="android:textStyle">bold</item>
+     </style>
+     <style name="window_title_background">
+           <item name="android:background">#222</item>
+     </style>
+
+	<!-- ============================================================ -->
+	<!-- Blue.Styles -->
+
+ 	<style name="page_background_blue">
+ 		<item name="android:background">#000</item>
+ 		<item name="android:padding">2sp</item>
+ 	</style>
+
+	<style name="text_blue">
+		<item name="android:textSize">14sp</item>
+<!--
+		<item android:state_enabled="false" android:color="#888" />
+		<item android:state_pressed="true" android:color="#FFF" />
+    	<item android:state_selected="true" android:color="#CCC" />
+    	<item android:state_focused="true" android:color="#CCC" />
+    	<item android:color="#AAA"/> 
+-->
+	</style>
+	<style name="text_blue.large">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">22sp</item>
+	</style>
+	
+	<style name="button_blue">
+		<item name="android:textColor">#000</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_margin">10sp</item>
+		<item name="android:paddingTop">22sp</item>
+		<item name="android:paddingBottom">22sp</item>
+<!--
+		<item android:drawable="button_blue.normal" />
+		<item android:state_pressed="true" 
+		    android:drawable="button_blue.pressed" />
+    	<item android:state_focused="true"
+          	android:drawable="button_blue.selected" />
+-->
+	</style>
+<!--
+	<style name="button_blue.normal">
+
+	</style>
+	<style name="button_blue.pressed">
+
+	</style>
+	<style name="button_blue.selected">
+
+	</style>
+-->
+	
+	<!-- ============================================================ -->
+ 	<!-- White.Styles -->
+
+	<!-- 
+	
+	...
+	
+	 -->
+
+
+</resources>

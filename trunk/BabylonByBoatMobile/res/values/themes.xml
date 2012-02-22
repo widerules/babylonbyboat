@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    
+    <!-- ============================================================ -->
+    <!-- custom attributes -->
+	<attr name="pageBackground" format="reference" />
+	<attr name="textNormal" format="reference" />
+	<attr name="textLarge" format="reference" />
+	<attr name="button" format="reference" />
+    
+	<!-- ============================================================ -->
+	<!-- Themes -->
+    <style name="Theme" parent="android:Theme">
+		<item name="android:windowTitleSize">40dip</item>
+        <item name="android:windowTitleStyle">@style/window_title_text</item>
+        <item name="android:windowTitleBackgroundStyle">@style/window_title_background</item>
+        <item name="android:typeface">monospace</item>
+	</style>
+
+    
+    <!-- ============================================================ -->
+    <style name="Theme.Blue">
+		<item name="pageBackground">@style/page_background_blue</item>	
+		<item name="textNormal">@style/text_blue</item>
+		<item name="textLarge">@style/text_blue.large</item>
+		<item name="button">@style/button_blue</item>
+	</style>
+	
+    <!-- ============================================================ -->
+	<style name="Theme.White">
+	<!-- 
+	...
+	...
+	...	
+	 --> 
+	</style>
+
+    
+</resources>
