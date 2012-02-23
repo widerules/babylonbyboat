@@ -18,9 +18,19 @@ public class BabylonByBoate extends Activity {
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setTheme(R.style.Theme_Blue);
         setContentView(R.layout.main);
+        
     }
     
     public void buttonClick(View v) {
     	this.startActivity(new Intent(this,Game.class));
     }
+    
+    /**
+     * Menü mit "about"-Button hinzufügen
+     * 
+     * "AboutView" öffnen (in einem Popup?!)
+     * 
+     * */    
+    
+    
 }
