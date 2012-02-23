@@ -34,17 +34,18 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
 
     public GameCanvas(Context context) {
         super(context);
+        lives = new Lives(context);
     }
 
     public GameCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         initialize();
+        lives = new Lives(context);
     }
 
     private void initialize() {
         water = BitmapFactory.decodeResource(getResources(), R.drawable.waterrefl);
         ship = new Ship("boat.png");
-        lives = new Lives();
     }
 
     @Override
