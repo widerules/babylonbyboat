@@ -32,9 +32,9 @@ public class Mine extends Basic2dObject {
 	 * @param int ressourceId - ImageRessourceIdentifier
 	 * @param float position_x / _y - the Mine will be spawned at this position
 	 */
-	public Mine(int ressourceId, float position_x, float position_y) {
+	public Mine(String ressourceName, float position_x, float position_y) {
 		//TODO: Bild nur einmal laden..
-		super(ressourceId);
+		super(ressourceName);
 		_position_x = position_x;
 		_position_y = position_y;
 		
@@ -49,8 +49,8 @@ public class Mine extends Basic2dObject {
 	 * @param int ressourceId - ImageRessourceIdentifier
 	 * @param Activity context - reference to an activity-context. Needed for getting the screenwidth
 	 */ 
-	public Mine(int ressourceId, Activity context) {
-		super(ressourceId);
+	public Mine(String ressourceName, Activity context) {
+		super(ressourceName);
 		Random rand = new Random();
 		
 		DisplayMetrics metrics = new DisplayMetrics();
