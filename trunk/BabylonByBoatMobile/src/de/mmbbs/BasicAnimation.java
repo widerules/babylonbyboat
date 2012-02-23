@@ -1,15 +1,42 @@
 package de.mmbbs;
+import java.util.ResourceBundle;
 
-public class BasicAnimation
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.ImageView;
+
+public class BasicAnimation extends Basic2dObject
 {
+	private int _stepsX;
+	private int _stepsY;
+	private int _currentStep;
+	private String _resourceName;
+	public BasicAnimation(String resourceName)
+	{
+		super(resourceName);
+		_resourceName = resourceName;
+		int xPos= getXPos();
+		int yPos = getYPos();
+		if(resourceName == "boot")
+		{
+			_stepsX = 5;
+			paint();
+		}
+		else
+		{
+			_stepsX = 3;
+		}
+	}
 	public static void reset()
 	{
-		//resets the Animation for the Image
+		
 	}
 	
 	public static void paint()
 	{
-		//paints the needed Images on screen
+		int currentSteps = 0;
 	}
+	
+	
 }
 
