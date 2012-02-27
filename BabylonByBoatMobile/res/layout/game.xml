@@ -4,12 +4,9 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
     
-    
     <de.mmbbs.GameCanvas
-    android:id="@+id/gui"  
-    android:layout_width="fill_parent" 
-    android:layout_height="200dip"
-    />
-    
+        android:id="@+id/gui"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
