@@ -18,12 +18,7 @@ import android.view.SurfaceView;
  * @author Alex
  *
  */
-public class GameCanvas extends SurfaceView implements ExplosionListener {
-
-    // TODO-: (am-16.02.2012): States über StatePattern auslagern!
-    private static final int STATE_LOSTLIVE = 1;
-    private static final int STATE_SPIEL = 1;
-    private static final int STATE_GAMEOVER = -1;
+public class GameCanvas extends SurfaceView {
 
     // Geschwindigkeitseinstellung
     private static final int DELAY = 10;
@@ -38,26 +33,20 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
     private long last_tick = 0;
 
     // Spielinstanzen
-    private Ship ship;
-    private Lives lives;
-    private Mine mines;
-    private Score score;
-    private int gameState;
+    private Game gameToDraw;
 
     public GameCanvas(Context context) {
         super(context);
-        lives = new Lives(context);
+        initialize();
     }
 
     public GameCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initialize();
-        lives = new Lives(context);
+        initialize();        
     }
 
     private void initialize() {
-        score = new Score();
-        ship = new Ship("boat.png");
+        
     }
 
     @Override
@@ -79,9 +68,10 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
         // das Wasser zeichnen
         drawWater(c);
 
-        lives.paint(c, p);
-        ship.paint(c);
-        score.paint(c, p);
+        gameToDraw.getLives().paint(c, p);        
+        gameToDraw.getScore().paint(c, p);
+        //gameToDraw.getMines().paint(c, p);
+        //gameToDraw.getShip().paint(c, p);
     }
 
     /**
@@ -140,16 +130,12 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
             }
         }
     }
-
+    
     public void run(Canvas canvas) {
 
     }
-
-    /**
-     * getState - Liefert den aktuellen Spielstatus (state)
-     */
-    public void geState() {
-        // TODO-: (am-16.02.2012): noch mit Inhalt füllen
-    }
-
+    
+	public void setGameToDraw(Game game) {
+		this.gameToDraw = game;		
+	}
 }

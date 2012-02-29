@@ -3,6 +3,7 @@ import java.util.ResourceBundle;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.widget.ImageView;
 
 public class BasicAnimation extends Basic2dObject
@@ -30,11 +31,15 @@ public class BasicAnimation extends Basic2dObject
 	public static void reset()
 	{
 		
-	}
-	
+	}	
 	public static void paint()
 	{
 		int currentSteps = 0;
+	}
+	@Override
+	public void paint(Canvas c, Paint p) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

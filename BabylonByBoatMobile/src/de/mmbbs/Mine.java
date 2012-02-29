@@ -11,6 +11,8 @@ package de.mmbbs;
 import java.util.Random;
 
 import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.util.DisplayMetrics;
 
 public class Mine extends Basic2dObject {
@@ -81,6 +83,9 @@ public class Mine extends Basic2dObject {
 		_position_y += _speed_y;
 		_rotation += _speed_rotation;
 	}
-	
-	
+	@Override
+	public void paint(Canvas c, Paint p) {
+		// TODO Auto-generated method stub
+		
+	}	
 }
