@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
@@ -23,14 +24,24 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
     private static final int STATE_LOSTLIVE = 1;
     private static final int STATE_SPIEL = 1;
     private static final int STATE_GAMEOVER = -1;
-    private static final String GAME_TITLE = "BabylonByBoate";
+
+    // Geschwindigkeitseinstellung
+    private static final int DELAY = 10;
+    private static final int WATERSPEED = 1;
+    private static final int WATERALPHASPEED = 6;
+
     private Bitmap water;
     private Bitmap wateralpha;
+    //   private Canvas canvas;
+    private int waterPosY = 0;
+    private int wateralphaPosY = 0;
+    private long last_tick = 0;
 
     // Spielinstanzen
     private Ship ship;
     private Lives lives;
     private Mine mines;
+    private Score score;
     private int gameState;
 
     public GameCanvas(Context context) {
@@ -45,10 +56,7 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
     }
 
     private void initialize() {
-        // Rohbilder in Bitmaps laden
-        water = BitmapFactory.decodeResource(getResources(), R.drawable.waterrefl);
-        wateralpha = BitmapFactory.decodeResource(getResources(), R.drawable.waterreflalpha);
-
+        score = new Score();
         ship = new Ship("boat.png");
     }
 
@@ -61,29 +69,80 @@ public class GameCanvas extends SurfaceView implements ExplosionListener {
 
     public void render(Canvas c) {
         // TODO Auto-generated method stub
+        if (water == null || wateralpha == null) {
+            loadAndScaleWaterBitmaps(c);
+        }
         Paint p = new Paint();
         p.setColor(Color.CYAN);
-        c.drawText(GAME_TITLE, c.getWidth() / 2 - (GAME_TITLE.length() * 2), 10, p);
+        //c.drawText(GAME_TITLE, c.getWidth() / 2 - (GAME_TITLE.length() * 2), 10, p);
+
+        // das Wasser zeichnen
         drawWater(c);
 
         lives.paint(c, p);
         ship.paint(c);
+        score.paint(c, p);
     }
 
+    /**
+     * Läd die Bitmaps vom Wasser und skaliert diese auf die Größe von Canvas.
+     * 
+     * @param c - Canvas
+     */
+    private void loadAndScaleWaterBitmaps(Canvas c) {
+        // Rohbilder in Bitmaps laden
+        Bitmap tmpwater = BitmapFactory.decodeResource(getResources(), R.drawable.waterrefl);
+        Bitmap tmpwateralpha = BitmapFactory.decodeResource(getResources(), R.drawable.waterreflalpha);
+        // und skalieren
+        water = Bitmap.createScaledBitmap(tmpwater, c.getWidth(), c.getHeight(), false);
+        wateralpha = Bitmap.createScaledBitmap(tmpwateralpha, c.getWidth(), c.getHeight() + WATERALPHASPEED, false);
+    }
+
+    /**
+     * Zeichnet die Water Bitmaps aufs Canvas und bei jedem neuen Aufruf wird die Position etwas nach unten verschoben.
+     * 
+     * @param c - Canvas
+     */
     private void drawWater(Canvas c) {
         // Die Wasserbilder müssen noch auf die entsprechende Größe skaliert werden
         // TODO-: (am-27.02.2012): das Skalieren evtl. in einen Thread auslagern, falls es zu lange dauert
         //                         aber spätestens, wenn die Animation hinzukommt
-        Bitmap tmpwater = Bitmap.createScaledBitmap(water, c.getWidth(), c.getHeight(), true);
-        Bitmap tmpwateralpha = Bitmap.createScaledBitmap(wateralpha, c.getWidth(), c.getHeight(), true);
 
-        // und zeichnen
-        c.drawBitmap(tmpwater, 0, 15, null);
-        c.drawBitmap(tmpwateralpha, 0, 15, null);
+        if (c != null) {
+            long time = (System.currentTimeMillis() - last_tick);
+
+            if (time >= DELAY) {
+                last_tick = System.currentTimeMillis();
+
+                // Water "oben" zeichnen
+                c.drawBitmap(water, new Rect(0, water.getHeight() - waterPosY, water.getWidth(), water.getHeight()),
+                    new Rect(0, 0, water.getWidth(), waterPosY), null);
+
+                // Wateralpha "oben" zeichnen
+                c.drawBitmap(wateralpha, new Rect(0, wateralpha.getHeight() - waterPosY, wateralpha.getWidth(),
+                    wateralpha.getHeight()), new Rect(0, 0, wateralpha.getWidth(), waterPosY), null);
+
+                // Water und Wateralpha zeichnen
+                c.drawBitmap(water, 0, waterPosY, new Paint());
+                c.drawBitmap(wateralpha, 0, waterPosY, new Paint());
+
+                // Position (Höhe) nach unten verschieben
+                waterPosY += WATERSPEED;
+
+                // noch nicht verwendet!
+                //wateralphaPosY += WATERALPHASPEED;
+                if (waterPosY >= c.getHeight()) {
+                    waterPosY = 0;
+                }
+                //                if (wateralphaPosY >= c.getHeight()) {
+                //                    wateralphaPosY = 0;
+                //                }
+            }
+        }
     }
 
-    private void run() {
-        // TODO-: (am-16.02.2012): noch mit Inhalt füllen
+    public void run(Canvas canvas) {
+
     }
 
     /**
