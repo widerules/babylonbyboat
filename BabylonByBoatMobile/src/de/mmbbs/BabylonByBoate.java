@@ -1,6 +1,5 @@
 package de.mmbbs;
 
-import android.R.string;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 public class BabylonByBoate extends Activity {
@@ -25,7 +23,7 @@ public class BabylonByBoate extends Activity {
         
     }
     
-    //Menü hinzufügen
+    //Menï¿½ hinzufï¿½gen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater menuInflater = getMenuInflater();
@@ -47,7 +45,9 @@ public class BabylonByBoate extends Activity {
    }
     
     public void buttonClick(View v) {
-    	this.startActivity(new Intent(this,Game.class));
+    	Intent i = new Intent();
+    	i.setClass(getBaseContext(), GameActivity.class);
+    	this.startActivity(i);
     }
 
 }
