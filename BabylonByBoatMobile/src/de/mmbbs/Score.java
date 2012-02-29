@@ -1,34 +1,37 @@
 package de.mmbbs;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Score {
-	private Integer Punkte;
+	private Integer Points;
 	
 	//Konstruktor - score setzen
 	public Score()
 	{
-		Punkte = 10000;
+		this.Points = 0;
 	}
 	
 	//Punkte hochzählen
 	public void inc()
 	{
-		Punkte = Punkte + 1;
+		this.Points = this.Points + 1;
 	}
 	
 	//Punkte zurückgeben
 	public String getScore()
 	{
-		String sPunkte;
-		sPunkte = Punkte.toString();
-		return sPunkte;
+		String sPoints;
+		sPoints = this.Points.toString();
+		while (sPoints.length() < 5)
+		{
+			sPoints = "0" + this.Points.toString();
+		}
+		return sPoints;
 	}
 	
 	//Punkte ausgeben
-	public void paint (Canvas c, Paint p) {
-		c.drawText("Score: " + Punkte, c.getWidth()-100, 10, p);
+	public void paint(Canvas c, Paint p) {
+		c.drawText("Score: " + getScore(), c.getWidth()-100, 10, p);
 	}	
 }
