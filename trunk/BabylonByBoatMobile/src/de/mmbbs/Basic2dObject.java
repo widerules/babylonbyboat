@@ -1,5 +1,6 @@
 package de.mmbbs;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,23 +14,35 @@ public abstract class Basic2dObject {
 	private int xPos;
 	private int yPos;
 
-	public Basic2dObject(String ressourcesname) {
-		bitmap = BitmapFactory.decodeFile(ressourcesname);
+
+	public Basic2dObject(int resourceId, Context context) {
+				
+		bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
 	}
 	
-	//Gibt Weite als Integer zurück
+	
+
+	public Basic2dObject(int ressourceId) {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Bitmap getBitmap() {
+		return bitmap;
+	}
+
+	//Gibt Weite als Integer zurï¿½ck
 	public int getWidth()
 	{
 		return bitmap.getWidth();
 	}
 	
-	//Gibt hoehe als Integer zurück
+	//Gibt hoehe als Integer zurï¿½ck
 	public int getHeight()
 	{
 		return bitmap.getHeight();
 	}
 
-	//Gibt hit als Booliean zurück
+	//Gibt hit als Booliean zurï¿½ck
 	public boolean hit(Basic2dObject b2dO)
 	{
 		return true; 

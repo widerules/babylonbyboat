@@ -11,14 +11,14 @@ public class BasicAnimation extends Basic2dObject
 	private int _stepsX;
 	private int _stepsY;
 	private int _currentStep;
-	private String _resourceName;
-	public BasicAnimation(String resourceName)
+	private int _resourceName;
+	public BasicAnimation(int resourceName)
 	{
 		super(resourceName);
 		_resourceName = resourceName;
 		int xPos= getXPos();
 		int yPos = getYPos();
-		if(resourceName == "boot")
+		if(resourceName == R.drawable.boat)
 		{
 			_stepsX = 5;
 			paint();
