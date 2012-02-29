@@ -30,7 +30,5 @@ public class Score {
 	//Punkte ausgeben
 	public void paint (Canvas c, Paint p) {
 		c.drawText("Score: " + Punkte, c.getWidth()-100, 10, p);
-	}
-	
-	
+	}	
 }

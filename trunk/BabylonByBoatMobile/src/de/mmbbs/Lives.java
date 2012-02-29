@@ -29,13 +29,13 @@ public class Lives {
     }
 
     // Leben zeichnen
-    public void paint(Canvas g, Paint p) {
+    public void paint(Canvas c, Paint p) {
     	final int top = 15+5; // 15 ist der schwarze Bereich über dem Wasser
     	int left = 5;
 
     	for (int i=1;i<=this.livecounter;i++) {
     		// Bild zeichnen
-        	g.drawBitmap(this.bm, left, top, p);
+        	c.drawBitmap(this.bm, left, top, p);
         	// Abstand zum nächsten Bild: 5px
         	left = left + this.bm_width + 5;
     	}

@@ -3,9 +3,10 @@ package de.mmbbs;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.widget.ImageView;
 
-public class Basic2dObject {
+public abstract class Basic2dObject {
 	
 	//Klassenvaribalen
 	private Bitmap bitmap;
@@ -47,9 +48,7 @@ public class Basic2dObject {
 	}
 	
 	//Paint?
-	public void paint(Canvas c) {
-		
-	}
+	public abstract void paint(Canvas c, Paint p);
 	
 	public ImageView getImage(int ressourceID)
 	{
