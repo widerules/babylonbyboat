@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, BabylonByBoate!</string>
-    <string name="app_name">BabylonByBoate</string>
+    <string name="app_name">BabylonByBoate</string>   
+    <string name="about_title">About</string>
+    <string name="about_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</string>
+    <string name="btn_startgame">Start Game</string>
+    <string name="btn_ok">OK</string> 
 </resources>
