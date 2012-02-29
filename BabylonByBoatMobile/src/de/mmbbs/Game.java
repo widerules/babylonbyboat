@@ -16,7 +16,7 @@ public class Game extends StateManager{
     public Game (Context context){
     	setLives(new Lives(context));
     	setScore(new Score());
-        setShip(new Ship(R.drawable.boat, context));        
+        setShip(new Ship(R.drawable.boat, context));             
     }
 
 	public Ship getShip() {

@@ -1,5 +1,7 @@
 package de.mmbbs;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,9 +11,8 @@ public class Ship extends Basic2dObject{
 	
 	private static final Bitmap bitmap = BitmapFactory.decodeFile("");
 	
-	public Ship(String ressourcename){
-		super(ressourcename);
-		
+	public Ship(int ressourceName, Context context){
+		super(ressourceName);		
 	}
 	
 	public void moveLeft()
