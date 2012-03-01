@@ -16,14 +16,22 @@ public class GameManager implements Runnable, ExplosionListener {
 		game = new Game(gc.getContext());
 		gc.setGameToDraw(game);
 		game.setState(State.Ready);
-		runner = new Thread(this);
-        runner.start();
+		initialiseGameScreenDrawing();
 	}
+	
+	private void initialiseGameScreenDrawing() {
+		if (game.getState().equals(State.Ready)){
+			game.setState(State.Playing);
+			runner = new Thread(this);
+	        runner.start();
+		}
+	}
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		Canvas c = null;
-		while (game.getState() == State.Playing) {
+		while (game.getState().equals(State.Playing)) {
 			c=null;
 			try {
 				c=gc.getHolder().lockCanvas();
