@@ -16,7 +16,7 @@ public class Lives {
 
     // Konstruktor
     public Lives(Context context) {
-    	// Herz Icon zuweisen
+        // Herz Icon zuweisen
         InputStream is = context.getResources().openRawResource(R.drawable.herz);
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inJustDecodeBounds = true;
@@ -30,15 +30,15 @@ public class Lives {
 
     // Leben zeichnen
     public void paint(Canvas c, Paint p) {
-    	final int top = 15+5; // 15 ist der schwarze Bereich über dem Wasser
-    	int left = 5;
+        final int top = 5;
+        int left = 5;
 
-    	for (int i=1;i<=this.livecounter;i++) {
-    		// Bild zeichnen
-        	c.drawBitmap(this.bm, left, top, p);
-        	// Abstand zum nächsten Bild: 5px
-        	left = left + this.bm_width + 5;
-    	}
+        for (int i = 1; i <= this.livecounter; i++) {
+            // Bild zeichnen
+            c.drawBitmap(this.bm, left, top, p);
+            // Abstand zum nächsten Bild: 5px
+            left = left + this.bm_width + 5;
+        }
     }
 
     // Leben um 1 reduzieren
@@ -46,7 +46,7 @@ public class Lives {
         this.livecounter = this.livecounter - 1;
 
         if (this.livecounter < 0) {
-        	this.livecounter = 0;
+            this.livecounter = 0;
         }
     }
 
