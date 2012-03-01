@@ -96,5 +96,11 @@ public class Mine extends Basic2dObject {
             _position_x, _position_y, null);
         _position_x += _speed_x * (MINIMUM_SPEED + _speed_x);
         _position_y += _speed_y;
+        if (_position_x > c.getWidth()) {
+            _position_x = 0;
+        }
+        if (_position_y > c.getHeight()) {
+            _position_y = 0;
+        }
     }
 }
