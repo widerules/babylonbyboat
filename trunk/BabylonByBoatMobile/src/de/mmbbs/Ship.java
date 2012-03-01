@@ -23,6 +23,8 @@ public class Ship extends Basic2dObject implements SensorEventListener{
 	private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
     private final Sensor mGyroscope;
+    private boolean accelerometer;
+    private boolean gyroscope;
     private long lastUpdate;
 
 	public Ship(int resourceId, Context context){
@@ -79,6 +81,15 @@ public class Ship extends Basic2dObject implements SensorEventListener{
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		// TODO Auto-generated method stub
+		if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+		{
+			accelerometer = true;
+		}
+		if(event.sensor.getType() == Sensor.TYPE_GYROSCOPE)
+		{
+			gyroscope = true;
+		}
+		
 		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 			float[] values = event.values;
 			// Movement
@@ -89,13 +100,19 @@ public class Ship extends Basic2dObject implements SensorEventListener{
 			float accelationSquareRoot = (x * x + y * y + z * z)
 					/ (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
 			long actualTime = System.currentTimeMillis();
-			if (accelationSquareRoot >= 1.3) //
+			if (accelationSquareRoot >= 1.2) //
 			{
-				if(y < -1)
+				if(x < -1)
 				{
-					moveLeft();				
+					for(int i = 1; i < 5; i++)
+					{
+						moveRight();
+					}
 				} else {
-					moveRight();
+					for(int i = 1; i < 5; i++)
+					{
+						moveLeft();
+					}
 				}
 				
 				if (actualTime - lastUpdate < 200) {
