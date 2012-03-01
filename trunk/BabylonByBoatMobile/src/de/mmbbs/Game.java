@@ -1,76 +1,92 @@
 package de.mmbbs;
 
+import java.util.Vector;
+
 import android.content.Context;
 
 /*
  * Das Spiel als Objekt
  * @author Christian
  */
-public class Game extends StateManager{
+public class Game extends StateManager {
+
     // Spielinstanzen
     private Ship ship;
     private Lives lives;
     private Mine mines;
-    private Score score;    
-    
-    public Game (Context context){
-    	setLives(new Lives(context));
-    	setScore(new Score());
-        setShip(new Ship(R.drawable.boat, context));             
+    private Vector<Mine> minesVector = new Vector<Mine>();
+    private Score score;
+
+    public Game(Context context) {
+        setLives(new Lives(context));
+        setScore(new Score());
+        setShip(new Ship(R.drawable.boat, context));
+        createMines(context, 3);
+
     }
 
-	public Ship getShip() {
-		return ship;
-	}
+    private void createMines(Context context, int anzahl) {
+        for (int i = 0; i < anzahl; i++) {
+            minesVector.addElement(new Mine(R.drawable.mine, context, 50 + (i * 50), 20));
+        }
+    }
 
-	public void setShip(Ship ship) {
-		this.ship = ship;
-	}
+    public Vector<Mine> getMinesVector() {
+        return minesVector;
+    }
 
-	public Lives getLives() {
-		return lives;
-	}
+    public Ship getShip() {
+        return ship;
+    }
 
-	public void setLives(Lives lives) {
-		this.lives = lives;
-	}
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
 
-	public Mine getMines() {
-		return mines;
-	}
+    public Lives getLives() {
+        return lives;
+    }
 
-	public void setMines(Mine mines) {
-		this.mines = mines;
-	}
+    public void setLives(Lives lives) {
+        this.lives = lives;
+    }
 
-	public Score getScore() {
-		return score;
-	}
+    public Mine getMines() {
+        return mines;
+    }
 
-	public void setScore(Score score) {
-		this.score = score;
-	}
+    public void setMines(Mine mines) {
+        this.mines = mines;
+    }
 
-	@Override
-	public void startGame() {
-		this.getState().startGame(this);		
-	}
+    public Score getScore() {
+        return score;
+    }
 
-	@Override
-	public void looseLive() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setScore(Score score) {
+        this.score = score;
+    }
 
-	@Override
-	public void pauseGame() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void startGame() {
+        this.getState().startGame(this);
+    }
 
-	@Override
-	public void exitGame() {
-		// TODO Auto-generated method stub
-		
-	}    
+    @Override
+    public void looseLive() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void pauseGame() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void exitGame() {
+        // TODO Auto-generated method stub
+
+    }
 }
