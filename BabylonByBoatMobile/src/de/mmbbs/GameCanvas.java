@@ -68,10 +68,16 @@ public class GameCanvas extends SurfaceView {
         // das Wasser zeichnen
         drawWater(c);
 
+        gameToDraw.getShip().paint(c, p);
+        //gameToDraw.getMines().paint(c, p);
+
+        // alle Minen zeichnen
+        for (Mine mine : gameToDraw.getMinesVector()) {
+            mine.paint(c, p);
+
+        }
         gameToDraw.getLives().paint(c, p);
         gameToDraw.getScore().paint(c, p);
-        // gameToDraw.getMines().paint(c, p); // Macht noch nichts und ist auch noch nicht initialisiert.
-        gameToDraw.getShip().paint(c, p);
     }
 
     /**
