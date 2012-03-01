@@ -8,19 +8,23 @@ import android.graphics.Paint;
 import android.widget.ImageView;
 
 public abstract class Basic2dObject {
-	
+
 	//Klassenvaribalen
 	private Bitmap bitmap;
-	private int xPos;
-	private int yPos;
+	
+	private Position currentPosition;
 
+	public Position getCurrentPosition() {
+		return currentPosition;
+	}
+
+	public void setCurrentPosition(Position currentPosition) {
+		this.currentPosition = currentPosition;
+	}
 
 	public Basic2dObject(int resourceId, Context context) {
-				
 		bitmap = BitmapFactory.decodeResource(context.getResources(), resourceId);
 	}
-	
-	
 
 	public Basic2dObject(int ressourceId) {
 		// TODO Auto-generated constructor stub
@@ -30,34 +34,16 @@ public abstract class Basic2dObject {
 		return bitmap;
 	}
 
-	//Gibt Weite als Integer zur�ck
+	//Gibt Weite als Integer zurueck
 	public int getWidth()
 	{
 		return bitmap.getWidth();
 	}
 	
-	//Gibt hoehe als Integer zur�ck
+	//Gibt hoehe als Integer zurueck
 	public int getHeight()
 	{
 		return bitmap.getHeight();
-	}
-
-	//Gibt hit als Booliean zur�ck
-	public boolean hit(Basic2dObject b2dO)
-	{
-		return true; 
-	}
-	
-	//Holt sich die Position des Boots auf der X Achse
-	public int getXPos()
-	{
-		return 0;
-	}
-	
-	//Holt sich die Position des Boots auf der Y Achse
-	public int getYPos()
-	{
-		return 0;
 	}
 	
 	//Paint?
