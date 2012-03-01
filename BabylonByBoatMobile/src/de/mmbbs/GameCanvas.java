@@ -12,7 +12,7 @@ import android.view.SurfaceView;
 
 /**
  * 
- * (16.02.2012 14:58:53) am:<ul><li>Neue Methoden hinzugefügt (ohne Inhalt).</li></ul>
+ * (16.02.2012 14:58:53) am:<ul><li>Neue Methoden hinzugefï¿½gt (ohne Inhalt).</li></ul>
  * (16.02.2012 14:43:54) am:<ul><li>Klasse ExplosionListener wird nun implementiert</li></ul>
  * 
  * @author Alex
@@ -68,14 +68,14 @@ public class GameCanvas extends SurfaceView {
         // das Wasser zeichnen
         drawWater(c);
 
-        gameToDraw.getLives().paint(c, p);        
-        gameToDraw.getScore().paint(c, p);
+//        gameToDraw.getLives().paint(c, p);        
+//        gameToDraw.getScore().paint(c, p);
         //gameToDraw.getMines().paint(c, p);
         //gameToDraw.getShip().paint(c, p);
     }
 
     /**
-     * Läd die Bitmaps vom Wasser und skaliert diese auf die Größe von Canvas.
+     * Lï¿½d die Bitmaps vom Wasser und skaliert diese auf die Grï¿½ï¿½e von Canvas.
      * 
      * @param c - Canvas
      */
@@ -94,9 +94,9 @@ public class GameCanvas extends SurfaceView {
      * @param c - Canvas
      */
     private void drawWater(Canvas c) {
-        // Die Wasserbilder müssen noch auf die entsprechende Größe skaliert werden
+        // Die Wasserbilder mï¿½ssen noch auf die entsprechende Grï¿½ï¿½e skaliert werden
         // TODO-: (am-27.02.2012): das Skalieren evtl. in einen Thread auslagern, falls es zu lange dauert
-        //                         aber spätestens, wenn die Animation hinzukommt
+        //                         aber spï¿½testens, wenn die Animation hinzukommt
 
         if (c != null) {
             long time = (System.currentTimeMillis() - last_tick);
@@ -116,7 +116,7 @@ public class GameCanvas extends SurfaceView {
                 c.drawBitmap(water, 0, waterPosY, new Paint());
                 c.drawBitmap(wateralpha, 0, waterPosY, new Paint());
 
-                // Position (Höhe) nach unten verschieben
+                // Position (Hï¿½he) nach unten verschieben
                 waterPosY += WATERSPEED;
 
                 // noch nicht verwendet!
@@ -130,10 +130,10 @@ public class GameCanvas extends SurfaceView {
             }
         }
     }
-    
-    public void run(Canvas canvas) {
-
-    }
+//    
+//    public void run(Canvas canvas) {
+//
+//    }
     
 	public void setGameToDraw(Game game) {
 		this.gameToDraw = game;		
