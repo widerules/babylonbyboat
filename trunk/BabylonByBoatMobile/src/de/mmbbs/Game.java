@@ -16,18 +16,22 @@ public class Game extends StateManager {
     private Mine mines;
     private Vector<Mine> minesVector = new Vector<Mine>();
     private Score score;
+    protected Context context;
 
     public Game(Context context) {
+        this.context = context;
         setLives(new Lives(context));
         setScore(new Score());
         setShip(new Ship(R.drawable.boat, context));
         createMines(context, 3);
-
     }
 
-    private void createMines(Context context, int anzahl) {
-        for (int i = 0; i < anzahl; i++) {
-            minesVector.addElement(new Mine(R.drawable.mine, context, 50 + (i * 50), 20));
+    protected void createMines(Context context, int anzahl) {
+        // Minen erstmal begrenzen. PERFORMANCE!
+        if (minesVector.size() <= 12) {
+            for (int i = 0; i < anzahl; i++) {
+                minesVector.addElement(new Mine(R.drawable.mine, context, 50 + (i * 50), 20));
+            }
         }
     }
 
