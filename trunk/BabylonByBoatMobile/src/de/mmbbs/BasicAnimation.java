@@ -16,8 +16,8 @@ public class BasicAnimation extends Basic2dObject
 	{
 		super(resourceName);
 		_resourceName = resourceName;
-		int xPos= getXPos();
-		int yPos = getYPos();
+		int xPos = getCurrentPosition().x;
+		int yPos = getCurrentPosition().x;
 		if(resourceName == R.drawable.boat)
 		{
 			_stepsX = 5;
