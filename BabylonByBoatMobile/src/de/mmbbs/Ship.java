@@ -2,6 +2,7 @@ package de.mmbbs;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.view.Display;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 
 public class Ship extends Basic2dObject implements SensorEventListener{
@@ -21,18 +23,27 @@ public class Ship extends Basic2dObject implements SensorEventListener{
 	private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
     private final Sensor mGyroscope;
+    private long lastUpdate;
 
 	public Ship(int resourceId, Context context){
 		super(resourceId, context);
 		
 		//Sensormanager initialisieren
 		mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+		
+		mSensorManager.registerListener(this,
+				mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_NORMAL);
+//		mSensorManager.registerListener(this,
+//				mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
+//				SensorManager.SENSOR_DELAY_NORMAL);
+		lastUpdate = System.currentTimeMillis();
 	    
 		//Sensoren laden
 		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 	    mGyroscope = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 		
-         //Screen-Abmaße besorgen	    
+         //Screen-Abmasse besorgen	    
 		 WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 		 Display display = wm.getDefaultDisplay();
 		 screenwidth = display.getWidth();
@@ -68,7 +79,31 @@ public class Ship extends Basic2dObject implements SensorEventListener{
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		// TODO Auto-generated method stub
-		
+		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+			float[] values = event.values;
+			// Movement
+			float x = values[0];
+			float y = values[1];
+			float z = values[2];
+			
+			float accelationSquareRoot = (x * x + y * y + z * z)
+					/ (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
+			long actualTime = System.currentTimeMillis();
+			if (accelationSquareRoot >= 1.3) //
+			{
+				if(y < -1)
+				{
+					moveLeft();				
+				} else {
+					moveRight();
+				}
+				
+				if (actualTime - lastUpdate < 200) {
+					return;
+				}
+				lastUpdate = actualTime;
+			}
+		}
 	}
 	
 	public Sensor getmAccelerometer() {
