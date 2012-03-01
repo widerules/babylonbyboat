@@ -1,8 +1,9 @@
 package de.mmbbs;
+/* @author David Redlich*/
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,7 +11,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.view.Display;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 
 public class Ship extends Basic2dObject implements SensorEventListener{
@@ -26,6 +26,7 @@ public class Ship extends Basic2dObject implements SensorEventListener{
     private boolean accelerometer;
     private boolean gyroscope;
     private long lastUpdate;
+	private Matrix matrix;
 
 	public Ship(int resourceId, Context context){
 		super(resourceId, context);
@@ -59,17 +60,23 @@ public class Ship extends Basic2dObject implements SensorEventListener{
 	
 	@Override
 	public void paint(Canvas c, Paint p) {
-		c.drawBitmap(getBitmap(), shipX, shipY, p);
+		matrix = new Matrix();
+		matrix.setTranslate(shipX, shipY);
+		c.drawBitmap(getBitmap(), matrix, p);
 	}
 	
 	
 	public void moveLeft()
 	{
+		matrix.preRotate(-1.f);
 		shipX -= 1;
+		matrix.preRotate(1.f);
 	}
 	
 	public void moveRight() {
+		matrix.preRotate(1.f);
 		shipX += 1;
+		matrix.preRotate(-1.f);
 	}
 
 	@Override
