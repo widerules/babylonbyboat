@@ -21,14 +21,14 @@ public class Score {
     public String getScore() {
         String sPoints;
         sPoints = this.Points.toString();
-        //        while (sPoints.length() < 5) {
-        //            sPoints = "0" + this.Points.toString();
-        //        }
+        while (sPoints.length() < 5) {
+            sPoints = "0" + sPoints;
+        }
         return sPoints;
     }
 
     //Punkte ausgeben
     public void paint(Canvas c, Paint p) {
-        c.drawText("Score: " + getScore(), c.getWidth() - 100, 15, p);
+        c.drawText("Score: " + getScore(), c.getWidth() - 80, 15, p);
     }
 }
