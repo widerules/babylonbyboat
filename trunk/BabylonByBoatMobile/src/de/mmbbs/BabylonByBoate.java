@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 
 public class BabylonByBoate extends Activity {
     /** Called when the activity is first created. */
@@ -20,7 +21,8 @@ public class BabylonByBoate extends Activity {
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setTheme(R.style.Theme_Blue);
         setContentView(R.layout.main);
-        
+
+        getWindow().addFlags(LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
     
     //Men� hinzuf�gen
@@ -28,7 +30,7 @@ public class BabylonByBoate extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.startscreen_menu, menu);
-        return true;    	
+        return true;	
     }
     
    @Override
