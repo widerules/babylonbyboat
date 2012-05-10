@@ -10,28 +10,28 @@ import android.graphics.Paint;
 
 public class Lives {
 
-    private int livecounter;
-    private Bitmap bm;
-    private int bm_width;
+    private int livecounter; // Anzahl der Leben
+    private Bitmap bm; // wird ausserhalb deklariert um die dauerhafte Neudefinition innerhalb des Threads zu verhindern
+    private int bm_width; // Breite des Bildes
 
     // Konstruktor
     public Lives(Context context) {
         // Herz Icon zuweisen
-        InputStream is = context.getResources().openRawResource(R.drawable.herz);
-        BitmapFactory.Options opts = new BitmapFactory.Options();
-        opts.inJustDecodeBounds = true;
-        this.bm = BitmapFactory.decodeStream(is);
+        InputStream is = context.getResources().openRawResource(R.drawable.herz); // Bild wird aus den Ressourcen geholt
+        BitmapFactory.Options opts = new BitmapFactory.Options(); // Variabel um Bild ohne vorherige Speicherreservierung zu Laden
+        opts.inJustDecodeBounds = true; // Speicherlose Pixelreservierung = true
+        this.bm = BitmapFactory.decodeStream(is); // Unser Bild wird ins Bitmapformat umgewandelt
         // Breite des Icon's speichern
-        this.bm_width = this.bm.getWidth();
+        this.bm_width = this.bm.getWidth(); // Breite des Bildes abfragen
 
         // Am Anfang hat man 3 Leben
-        this.livecounter = 3;
+        this.livecounter = 3; // Lebensanzahl auf 3 setzen
     }
 
     // Leben zeichnen
     public void paint(Canvas c, Paint p) {
-        final int top = 5;
-        int left = 5;
+        final int top = 5; // Variabel für Abstand zum Bildrand
+        int left = 5; // Variabel für Abstand zum Bildrand
 
         for (int i = 1; i <= this.livecounter; i++) {
             // Bild zeichnen
