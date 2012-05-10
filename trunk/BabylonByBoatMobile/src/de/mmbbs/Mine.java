@@ -103,4 +103,9 @@ public class Mine extends Basic2dObject {
             _position_y = 0;
         }
     }
+
+	public void explode() {
+		// TODO Auto-generated method stub
+		
+	}
 }

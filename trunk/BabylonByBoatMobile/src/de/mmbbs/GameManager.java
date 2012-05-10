@@ -70,4 +70,10 @@ public class GameManager implements Runnable, ExplosionListener {
             }
         }
     }
+
+	@Override
+	public void explosionFinished() {
+		// TODO Auto-generated method stub
+		
+	}
 }

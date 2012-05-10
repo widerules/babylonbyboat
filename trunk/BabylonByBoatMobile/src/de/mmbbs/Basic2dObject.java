@@ -40,6 +40,10 @@ public abstract class Basic2dObject {
 		return bitmap.getWidth();
 	}
 	
+	public boolean hit(Basic2dObject o) {
+		return false;
+	}
+	
 	//Gibt hoehe als Integer zurueck
 	public int getHeight()
 	{

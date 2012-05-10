@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceView;
 
 /**
@@ -18,7 +19,7 @@ import android.view.SurfaceView;
  * @author Alex
  *
  */
-public class GameCanvas extends SurfaceView {
+public class GameCanvas extends SurfaceView implements ExplosionListener{
 
     // Geschwindigkeitseinstellung
     private static final int DELAY = 10;
@@ -31,6 +32,7 @@ public class GameCanvas extends SurfaceView {
     private int waterPosY = 0;
     private int wateralphaPosY = 0;
     private long last_tick = 0;
+    private Ship ship;
 
     // Spielinstanzen
     private Game gameToDraw;
@@ -38,6 +40,8 @@ public class GameCanvas extends SurfaceView {
     public GameCanvas(Context context) {
         super(context);
         initialize();
+        ship = gameToDraw.getShip();
+        ship.getExplosion().setExplosionListner(this);
     }
 
     public GameCanvas(Context context, AttributeSet attrs) {
@@ -74,6 +78,17 @@ public class GameCanvas extends SurfaceView {
         // alle Minen zeichnen
         for (Mine mine : gameToDraw.getMinesVector()) {
             mine.paint(c, p);
+            if (mine.hit(ship)) {
+            	ship.explode();
+            	gameToDraw.getLives().dec();
+            }
+            for (Mine m : gameToDraw.getMinesVector()) {
+            	if (mine.hit(m)) {
+            		mine.explode();
+            		m.explode();
+            	}
+            }
+            
 
         }
         gameToDraw.getLives().paint(c, p);
@@ -145,4 +160,10 @@ public class GameCanvas extends SurfaceView {
     public void setGameToDraw(Game game) {
         this.gameToDraw = game;
     }
+
+	@Override
+	public void explosionFinished() {
+		// TODO Auto-generated method stub
+		Log.d(BabylonByBoate.TAG, "Explosion beendet!");
+	}
 }
