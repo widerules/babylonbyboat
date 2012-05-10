@@ -28,10 +28,18 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 	private Matrix matrix;
 	private float direction = 0;
 	private float oldDirection = 0;
-
+	private ShipExplosion shipExplosion;
+	private static final int ALIVE=0;
+	private static final int EXPLODE=1;
+	private int state=ALIVE;
+	
+	
 	public Ship(int resourceId, Context context) {
 		super(resourceId, context);
 
+		shipExplosion = new ShipExplosion();
+		
+		
 		// Sensormanager initialisieren
 		mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 
@@ -56,13 +64,22 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 
 	}
 
+	public ShipExplosion getExplosion() {
+		return shipExplosion;
+	}
+	
 	@Override
 	public void paint(Canvas c, Paint p) {
-		matrix = new Matrix();
-		matrix.setTranslate(shipX, shipY);
-		c.drawBitmap(getBitmap(), matrix, p);
-		if (oldDirection < direction) this.moveLeft();
-		if (oldDirection > direction) this.moveRight();
+		if (state==ALIVE) {
+			matrix = new Matrix();
+			matrix.setTranslate(shipX, shipY);
+			c.drawBitmap(getBitmap(), matrix, p);
+			if (oldDirection < direction) this.moveLeft();
+			if (oldDirection > direction) this.moveRight();
+		}
+		else if (state==EXPLODE) {
+			shipExplosion.paint(this);
+		}
 	}
 
 	public void moveLeft() {
@@ -140,6 +157,12 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 
 	public Sensor getmGyroscope() {
 		return mGyroscope;
+	}
+
+	
+	public void explode() {
+		// TODO Auto-generated method stub
+		state=EXPLODE;
 	}
 
 }

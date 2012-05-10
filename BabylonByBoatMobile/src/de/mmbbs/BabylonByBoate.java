@@ -17,7 +17,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class BabylonByBoate extends Activity {
-    /** Called when the activity is first created. */
+    public static final String TAG = "BBB";
+
+	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
