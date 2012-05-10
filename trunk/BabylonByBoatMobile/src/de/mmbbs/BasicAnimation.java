@@ -6,24 +6,17 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.widget.ImageView;
 
-public class BasicAnimation extends Basic2dObject
+public class BasicAnimation
 {
 	private int _stepsX;
 	private int _stepsY;
 	private int _currentStep;
-	private int _resourceName;
 	public BasicAnimation(Basic2dObject object)
 	{
-		super(resourceName, Context context);
-		_resourceName = resourceName;
-		int xPos = getCurrentPosition().x;
-		int yPos = getCurrentPosition().x;
-		Bitmap bitmap = super.getBitmap();
-		if(resourceName == R.drawable.boat)
+		if(object.getClass() == Ship.Class)
 		{
 			_stepsX = 5;			
-		}
-		else if(resourceName == R.drawable.mine)
+		}if(true)
 		{
 			_stepsX = 3;
 		}
