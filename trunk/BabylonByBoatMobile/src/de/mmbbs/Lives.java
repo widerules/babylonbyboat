@@ -10,8 +10,8 @@ import android.graphics.Paint;
 
 public class Lives {
 
-    private int livecounter; // Anzahl der Leben
-    private Bitmap bm; // wird ausserhalb deklariert um die dauerhafte Neudefinition innerhalb des Threads zu verhindern
+    private int livecounter; // Anzahl der aktuell vorhandenen Leben
+    private Bitmap bm; // Variabel fŸr unser Live Icon
     private int bm_width; // Breite des Bildes
 
     // Konstruktor
