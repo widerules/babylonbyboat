@@ -88,11 +88,13 @@ public class Mine extends Basic2dObject {
         _rotation += _speed_rotation;
     }
 
+    
+    
     @Override
     public void paint(Canvas c, Paint p) {
         matrix.setRotate(_speed_rotation, getBitmap().getWidth() / 2, getBitmap().getHeight() / 2);
         c.drawBitmap(
-            Bitmap.createBitmap(getBitmap(), 0, 0, getBitmap().getWidth(), getBitmap().getHeight(), matrix, false),
+        	Bitmap.createBitmap(getBitmap(), 0, 0, getBitmap().getWidth(), getBitmap().getHeight(), matrix, false),
             _position_x, _position_y, null);
         _position_x += _speed_x * (MINIMUM_SPEED + _speed_x);
         _position_y += _speed_y;
@@ -105,7 +107,8 @@ public class Mine extends Basic2dObject {
     }
 
 	public void explode() {
-		// TODO Auto-generated method stub
-		
+		BasicAnimation anim = new BasicAnimation(this);
+		anim.setCurrentPosition(getCurrentPosition());
+		anim.start();
 	}
 }
