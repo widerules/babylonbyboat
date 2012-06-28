@@ -3,7 +3,7 @@
     <string name="hello">Hello World, BabylonByBoate!</string>
     <string name="app_name">BabylonByBoate</string>   
     <string name="about_title">About</string>
-    <string name="about_text">BabylonByBoat v1.0\n\n<u>Projektleitung</u>:\nDr. Jörg Tuttas\n\n<u>Verpflegung:</u>\nMultimedia Berufsschule\n\n<u>Verpflegung:</u>\nMultimedia Berufsschule\n\n<u>Verpflegung:</u>\nMultimedia Berufsschule\n\n<u>Verpflegung:</u>\nMultimedia Berufsschule\n\n<u>Verpflegung:</u>\nMultimedia Berufsschule</string>
+    <string name="about_text">BabylonByBoat v1.0\n\n<u>Projektleitung</u>:\nDr. Jörg Tuttas\n\n<u>Mine:</u>\nPeter Hankel\n\n<u>Lives:</u>\nAndre Ryll\n\n<u>Basic Animation:</u>\nPhilipp Tüngler\n\n<u>Ship Explosion:</u>\nJonas Frederic Siegl\n\n<u>Main:</u>\nDaniel Kison\nJulian Zielke\n\n<u>Basic 2D Object</u>:\nJanine Trebbe\nDaniela Rieche\nMaximilian Bartke\n\n<u>Ship</u>:\nDavid Redlich\n\n<u>Game</u>:\nChristian Otte\nAlexander Maier\n\n<u>Score</u>:\nHauke Münstermann\n\n<u>Live</u>:\nSascha Gakenholz</string>
     <string name="btn_startgame">Start Game</string>
     <string name="btn_ok">OK</string>
     
