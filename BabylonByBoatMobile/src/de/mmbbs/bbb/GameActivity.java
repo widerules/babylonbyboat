@@ -1,5 +1,8 @@
-package de.mmbbs;
+package de.mmbbs.bbb;
 
+import de.mmbbs.bbb.R;
+import de.mmbbs.bbb.R.id;
+import de.mmbbs.bbb.R.layout;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;

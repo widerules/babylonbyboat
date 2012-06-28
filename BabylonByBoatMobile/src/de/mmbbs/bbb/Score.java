@@ -1,4 +1,4 @@
-package de.mmbbs;
+package de.mmbbs.bbb;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
