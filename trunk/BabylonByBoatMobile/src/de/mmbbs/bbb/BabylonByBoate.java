@@ -1,5 +1,11 @@
-package de.mmbbs;
+package de.mmbbs.bbb;
 
+import de.mmbbs.bbb.R;
+import de.mmbbs.bbb.R.drawable;
+import de.mmbbs.bbb.R.layout;
+import de.mmbbs.bbb.R.menu;
+import de.mmbbs.bbb.R.string;
+import de.mmbbs.bbb.R.style;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;

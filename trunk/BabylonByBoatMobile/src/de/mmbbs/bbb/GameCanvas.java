@@ -1,5 +1,7 @@
-package de.mmbbs;
+package de.mmbbs.bbb;
 
+import de.mmbbs.bbb.R;
+import de.mmbbs.bbb.R.drawable;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

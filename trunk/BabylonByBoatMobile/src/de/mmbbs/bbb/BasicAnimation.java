@@ -1,4 +1,4 @@
-package de.mmbbs;
+package de.mmbbs.bbb;
 import java.util.ResourceBundle;
 
 import android.content.Context;
@@ -13,7 +13,7 @@ public class BasicAnimation
 	private int _currentStep;
 	public BasicAnimation(Basic2dObject object)
 	{
-		if(object.getClass() == Ship.Class)
+		if(object.getClass() == Ship.class)
 		{
 			_stepsX = 5;			
 		}if(true)
@@ -30,15 +30,15 @@ public class BasicAnimation
 	{
 		
 	}	
-	private int _stepsY = 0;
 	private float currentsteps = 0;
-	public static void paint()
+	
+	public void paint()
 	{
 		if(currentsteps < _stepsX)
 		{
 			
 		}
-		else if(_stepsY = 4)
+		else if(_stepsY == 4)
 		{
 			
 		}
@@ -50,10 +50,15 @@ public class BasicAnimation
 		
 		currentsteps += 1;
 	}
-	@Override
+
 	public void paint(Canvas c, Paint p) 
 	{
-		c.drawBitmap();
+		//c.drawBitmap();
+	}
+
+	public void setCurrentPosition(Position currentPosition) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

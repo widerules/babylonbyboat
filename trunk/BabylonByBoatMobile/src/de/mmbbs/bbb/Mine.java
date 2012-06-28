@@ -6,7 +6,7 @@
 //
 /////////////////////////////////////////////////////////
 
-package de.mmbbs;
+package de.mmbbs.bbb;
 
 import java.util.Random;
 

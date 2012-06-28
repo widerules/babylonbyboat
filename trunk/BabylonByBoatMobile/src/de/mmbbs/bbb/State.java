@@ -1,4 +1,4 @@
-package de.mmbbs;
+package de.mmbbs.bbb;
 /*
  * Enumeration mit Spielzuständen
  * @author Christian

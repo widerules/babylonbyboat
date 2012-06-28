@@ -1,6 +1,9 @@
-package de.mmbbs;
+package de.mmbbs.bbb;
 
 import java.util.Vector;
+
+import de.mmbbs.bbb.R;
+import de.mmbbs.bbb.R.drawable;
 
 import android.content.Context;
 
