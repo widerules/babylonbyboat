@@ -59,6 +59,7 @@ public class BabylonByBoate extends Activity {
 	   credits.setOrientation(LinearLayout.VERTICAL);
 	   ImageView img = new ImageView(this);
 	   img.setLayoutParams(new LayoutParams(400, 200));
+	   img.setScaleType(ScaleType.CENTER_INSIDE);
 	   img.setImageResource(R.drawable.about);
 	   credits.addView(img);
 	   
