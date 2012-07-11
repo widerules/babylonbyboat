@@ -89,12 +89,18 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 	public void moveLeft() {
 //		matrix.preRotate(-1.f);
 		shipX -= 1;
+		if(shipX < 0) {
+			shipX = 0;
+		}
 //		matrix.preRotate(1.f);
 	}
 
 	public void moveRight() {
 //		matrix.preRotate(1.f);
 		shipX += 1;
+		if(shipX > screenwidth - getWidth()) {
+			shipX = screenwidth - getWidth();
+		}
 //		matrix.preRotate(-1.f);
 	}
 
