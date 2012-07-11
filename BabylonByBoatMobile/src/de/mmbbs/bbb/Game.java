@@ -42,6 +42,12 @@ public class Game extends StateManager {
         return minesVector;
     }
 
+    public void removeMine(Mine removeMine) {
+    	if(minesVector.contains(removeMine)) {
+    		minesVector.remove(removeMine);
+    	}
+    }
+    
     public Ship getShip() {
         return ship;
     }

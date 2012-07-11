@@ -24,26 +24,25 @@ public class Mine extends Basic2dObject {
     private int SCREEN_WIDTH = 0;
     private int SCREEN_HEIGHT = 0;
 
-    private float _position_x;
-    private float _position_y;
-    private float _rotation = 10;
-
     private float _speed_x;
     private float _speed_y;
     private float _speed_rotation;
     private Matrix matrix = new Matrix();
+    
+    private boolean _alive = true;
 
     /**
      * @author Peter Hankel
      * @param int ressourceId - ImageRessourceIdentifier
      * @param float position_x / _y - the Mine will be spawned at this position
      */
-    public Mine(int ressourceName, Context context, float position_x, float position_y) {
+    public Mine(int ressourceName, Context context, int position_x, int position_y) {
         //TODO: Bild nur einmal laden..
         super(ressourceName, context);
-        _position_x = position_x;
-        _position_y = position_y;
-
+        
+        currentPosition = new Position(position_x, position_y);
+     
+        
         Random rand = new Random();
         _speed_x = rand.nextFloat() - 0.5f;
         _speed_y = rand.nextFloat() + MINIMUM_SPEED;
@@ -63,50 +62,38 @@ public class Mine extends Basic2dObject {
         context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
         SCREEN_WIDTH = metrics.widthPixels;
         SCREEN_HEIGHT = metrics.heightPixels;
-        _position_x = rand.nextFloat() * metrics.widthPixels;
-        _position_y = -getHeight() / 2;
+        
+        currentPosition = new Position((int)(rand.nextFloat() * metrics.widthPixels), -getHeight());
 
         _speed_x = rand.nextFloat() - 0.5f;
         _speed_y = rand.nextFloat() + MINIMUM_SPEED;
         _speed_rotation = rand.nextFloat() - 0.5f;
     }
-
-    public void tick() {
-        if (_position_y > SCREEN_HEIGHT + getHeight() / 2) {
-
-        }
-        else if (_position_x < 0) {
-            _position_x = 0;
-            _speed_x *= -1;
-        }
-        else if (_position_x > SCREEN_WIDTH - getWidth() / 2) {
-            _position_x = SCREEN_WIDTH - getWidth() / 2;
-            _speed_x *= -1;
-        }
-        _position_x += _speed_x;
-        _position_y += _speed_y;
-        _rotation += _speed_rotation;
-    }
-
     
+    public boolean isAlive() {
+    	return _alive;
+    }
     
     @Override
     public void paint(Canvas c, Paint p) {
+    	
         matrix.setRotate(_speed_rotation, getBitmap().getWidth() / 2, getBitmap().getHeight() / 2);
         c.drawBitmap(
         	Bitmap.createBitmap(getBitmap(), 0, 0, getBitmap().getWidth(), getBitmap().getHeight(), matrix, false),
-            _position_x, _position_y, null);
-        _position_x += _speed_x * (MINIMUM_SPEED + _speed_x);
-        _position_y += _speed_y;
-        if (_position_x > c.getWidth()) {
-            _position_x = 0;
+        	currentPosition.x, currentPosition.y, null);
+        currentPosition.x += _speed_x * (MINIMUM_SPEED + _speed_x);
+        currentPosition.y += _speed_y;
+        if (currentPosition.x > c.getWidth()) {
+        	currentPosition.x = 0;
         }
-        if (_position_y > c.getHeight()) {
-            _position_y = 0;
+        if (currentPosition.y > c.getHeight()) {
+        	currentPosition.y = 0;
         }
+        
     }
 
 	public void explode() {
+		_alive = false;
 		BasicAnimation anim = new BasicAnimation(this);
 		anim.setCurrentPosition(getCurrentPosition());
 		anim.start();

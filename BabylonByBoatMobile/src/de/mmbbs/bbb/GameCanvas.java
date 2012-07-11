@@ -42,8 +42,6 @@ public class GameCanvas extends SurfaceView implements ExplosionListener{
     public GameCanvas(Context context) {
         super(context);
         initialize();
-        ship = gameToDraw.getShip();
-        ship.getExplosion().setExplosionListner(this);
     }
 
     public GameCanvas(Context context, AttributeSet attrs) {
@@ -74,24 +72,31 @@ public class GameCanvas extends SurfaceView implements ExplosionListener{
         // das Wasser zeichnen
         drawWater(c);
 
-        gameToDraw.getShip().paint(c, p);
-        //gameToDraw.getMines().paint(c, p);
-
-        // alle Minen zeichnen
-        for (Mine mine : gameToDraw.getMinesVector()) {
-            mine.paint(c, p);
-            if (mine.hit(ship)) {
-            	ship.explode();
-            	gameToDraw.getLives().dec();
-            }
-            for (Mine m : gameToDraw.getMinesVector()) {
-            	if (mine.hit(m)) {
-            		mine.explode();
-            		m.explode();
-            	}
-            }
-            
-
+        if(ship != null) {
+	        ship.paint(c, p);
+	        //gameToDraw.getMines().paint(c, p);
+	
+	        // alle Minen zeichnen
+	        for (Mine mine : gameToDraw.getMinesVector()) {
+	        	if(mine.isAlive()) {
+		            mine.paint(c, p);
+		            if (mine.hit(ship)) {
+		            	mine.explode();
+		            	ship.explode();
+		            	gameToDraw.getLives().dec();
+		            }
+	//            for (Mine m : gameToDraw.getMinesVector()) {
+	//            	if (mine.hit(m)) {
+	//            		mine.explode();
+	//            		m.explode();
+	//            	}
+	//            }
+	        	}
+	            
+	        	else { //Mine ist gerade explodiert
+	        		gameToDraw.removeMine(mine);
+	        	}
+	        }
         }
         gameToDraw.getLives().paint(c, p);
         gameToDraw.getScore().paint(c, p);
@@ -161,6 +166,8 @@ public class GameCanvas extends SurfaceView implements ExplosionListener{
 
     public void setGameToDraw(Game game) {
         this.gameToDraw = game;
+        ship = gameToDraw.getShip();
+        ship.getExplosion().setExplosionListner(this);
     }
 
 	@Override
