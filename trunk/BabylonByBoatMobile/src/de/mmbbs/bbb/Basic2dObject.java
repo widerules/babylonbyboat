@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.widget.ImageView;
 
 public abstract class Basic2dObject {
@@ -12,7 +13,7 @@ public abstract class Basic2dObject {
 	//Klassenvaribalen
 	private Bitmap bitmap;
 	
-	private Position currentPosition;
+	protected Position currentPosition;
 
 	public Position getCurrentPosition() {
 		return currentPosition;
@@ -41,6 +42,13 @@ public abstract class Basic2dObject {
 	}
 	
 	public boolean hit(Basic2dObject o) {
+		if(o != null 
+				&& this.currentPosition.y >= o.getCurrentPosition().y 
+				&& this.currentPosition.y <= o.getCurrentPosition().y + o.getHeight()
+				&& this.currentPosition.x >= o.getCurrentPosition().x 
+				&& this.currentPosition.x <= o.getCurrentPosition().x + o.getWidth()) {
+			return true;
+		}
 		return false;
 	}
 	

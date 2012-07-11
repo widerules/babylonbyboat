@@ -17,18 +17,10 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 
 	private int screenwidth;
 	private int screenheight;
-	private int shipX;
-	private int shipY;
 	private final SensorManager mSensorManager;
 	private final Sensor mAccelerometer;
 	private final Sensor mGyroscope;
-	private final Sensor mOrientation;
-	private boolean accelerometer;
-	private boolean gyroscope;
-	private long lastUpdate;
 	private Matrix matrix;
-	private float direction = 0;
-	private float oldDirection = 0;
 	private ShipExplosion shipExplosion;
 	private static final int ALIVE=0;
 	private static final int EXPLODE=1;
@@ -54,7 +46,7 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 		// Sensoren laden
 		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		mGyroscope = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-		mOrientation = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+		//mOrientation = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
 		// Screen-Abmasse besorgen
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -63,9 +55,7 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 		screenheight = display.getHeight();
 
 		// StartKoordinaten fÃ¼r das Ship
-		shipX = (screenwidth / 2) - (getWidth() / 2);
-		shipY = screenheight - getHeight();
-
+		currentPosition = new Position((screenwidth / 2) - (getWidth() / 2), screenheight - getHeight());
 	}
 
 	public ShipExplosion getExplosion() {
@@ -76,7 +66,7 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 	public void paint(Canvas c, Paint p) {
 		if (state==ALIVE) {
 			matrix = new Matrix();
-			matrix.setTranslate(shipX, shipY);
+			matrix.setTranslate(currentPosition.x, currentPosition.y);
 			c.drawBitmap(getBitmap(), matrix, p);
 			// if (oldDirection < direction) this.moveLeft();
 			// if (oldDirection > direction) this.moveRight();
@@ -88,22 +78,25 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 
 	public void moveLeft() {
 //		matrix.preRotate(-1.f);
-		shipX -= 1;
-		if(shipX < 0) {
-			shipX = 0;
+		currentPosition.x -= 1;
+		if(currentPosition.x < 0) {
+			currentPosition.x = 0;
 		}
+
 //		matrix.preRotate(1.f);
 	}
 
 	public void moveRight() {
 //		matrix.preRotate(1.f);
-		shipX += 1;
-		if(shipX > screenwidth - getWidth()) {
-			shipX = screenwidth - getWidth();
+		currentPosition.x += 1;
+		if(currentPosition.x > screenwidth - getWidth()) {
+			currentPosition.x = screenwidth - getWidth();
 		}
+
 //		matrix.preRotate(-1.f);
 	}
 
+	
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO Auto-generated method stub
@@ -113,11 +106,7 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		// TODO Auto-generated method stub
-		float[] values = event.values;
 		// Movement
-		float x = values[0];
-		float y = values[1];
-		float z = values[2];
 
 		if (event.sensor.getType() == Sensor.TYPE_ORIENTATION) {
 			// Multiplikator für die Bewegungsgeschwindigkeit des Schiffes
@@ -167,8 +156,8 @@ public class Ship extends Basic2dObject implements SensorEventListener {
 
 		else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 			// Movement
-			oldDirection = direction;
-			direction = values[0];
+			//oldDirection = direction;
+			//direction = values[0];
 				
 //				x = values[0];
 //				y = values[1];
